@@ -74,9 +74,30 @@ public class DayJudge {
         String todayStr = format.format(newTime);
         Date today = format.parse(todayStr);
         //昨天 86400000=24*60*60*1000 一天
-        if ((today.getTime() - oldTime.getTime()) > 0 && (today.getTime() - oldTime.getTime()) <= 86400000) {
+        if ((today.getTime() - oldTime.getTime()) >=1000 && (today.getTime() - oldTime.getTime()) <= 86400000) {
             return true;
         }
             return false;
+    }
+
+    /**
+     * 判断时间是否属于前天
+     * @param oldTime
+     * @param newTime
+     * @return
+     * @throws ParseException
+     */
+    public static Boolean isBefore(Date oldTime, Date newTime) throws ParseException {
+        if (newTime == null) {
+            newTime = new Date();
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String todayStr = format.format(newTime);
+        Date today = format.parse(todayStr);
+        System.out.println(todayStr);
+        if ((today.getTime() - oldTime.getTime()) >=86401000 &&   ((today.getTime() - oldTime.getTime())<=172800000)){
+            return true;
+        }
+        return false;
     }
 }
